@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="BDFAST Digital Citizen Certificate & Prottoyon Management System">
+    <title>BDFAST - নাগরিক সেবা পোর্টাল</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-bold" href="#">
+                <i class="fas fa-certificate text-success"></i> BDFAST
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#home">হোম</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#services">সেবা সমূহ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="pages/track.html">ট্র্যাকিং</a></li>
+                    <li class="nav-item"><a class="nav-link" href="pages/verify.html">যাচাইকরণ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="pages/login.html">লগইন</a></li>
+                    <li class="nav-item"><a class="nav-link btn btn-success text-white ms-2" href="pages/register.html">নিবন্ধন</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section py-5 text-center text-white" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+        <div class="container">
+            <h1 class="display-4 fw-bold mb-4">BDFAST নাগরিক সেবা পোর্টাল</h1>
+            <p class="lead mb-4">ডিজিটাল সনদ ও প্রত্যয়নপত্র ব্যবস্থাপনা সিস্টেম</p>
+            <div class="d-flex gap-2 justify-content-center">
+                <a href="pages/register.html" class="btn btn-light btn-lg"><i class="fas fa-user-plus"></i> নতুন নিবন্ধন</a>
+                <a href="pages/login.html" class="btn btn-outline-light btn-lg"><i class="fas fa-sign-in-alt"></i> লগইন করুন</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5 fw-bold">আমাদের বৈশিষ্ট্য সমূহ</h2>
+            <div class="row g-4">
+                <div class="col-md-3 text-center">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-body">
+                            <i class="fas fa-mobile-alt fa-3x text-success mb-3"></i>
+                            <h5 class="card-title">মোবাইল OTP</h5>
+                            <p class="card-text">নিরাপদ মোবাইল যাচাইকরণ ব্যবস্থা</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 text-center">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-body">
+                            <i class="fas fa-certificate fa-3x text-primary mb-3"></i>
+                            <h5 class="card-title">ডিজিটাল সনদ</h5>
+                            <p class="card-text">PDF ফরম্যাটে তাৎক্ষণিক সার্টিফিকেট</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 text-center">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-body">
+                            <i class="fas fa-qrcode fa-3x text-warning mb-3"></i>
+                            <h5 class="card-title">QR যাচাইকরণ</h5>
+                            <p class="card-text">QR কোড স্ক্যান করে সনদ যাচাই করুন</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 text-center">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-body">
+                            <i class="fas fa-clock fa-3x text-danger mb-3"></i>
+                            <h5 class="card-title">রিয়েল-টাইম ট্র্যাকিং</h5>
+                            <p class="card-text">আপনার আবেদন অবস্থা রিয়েল-টাইম দেখুন</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5 fw-bold">উপলব্ধ সেবা সমূহ</h2>
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <div class="service-card card border-0 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">১. নাগরিকত্ব সনদ</h5>
+                            <p class="text-muted">আপনার নাগরিকত্ব প্রমাণের জন্য সনদ</p>
+                            <a href="#" class="btn btn-sm btn-primary">আবেদন করুন</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="service-card card border-0 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">২. চারিত্রিক সনদ</h5>
+                            <p class="text-muted">চরিত্র প্রমাণের জন্য সনদপত্র</p>
+                            <a href="#" class="btn btn-sm btn-primary">আবেদন করুন</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="service-card card border-0 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">৩. অবিবাহিত সনদ</h5>
+                            <p class="text-muted">অবিবাহিত অবস্থার প্রমাণ সনদ</p>
+                            <a href="#" class="btn btn-sm btn-primary">আবেদন করুন</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="service-card card border-0 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">৪. আয়ের সনদ</h5>
+                            <p class="text-muted">বার্ষিক/মাসিক আয়ের প্রমাণ সনদ</p>
+                            <a href="#" class="btn btn-sm btn-primary">আবেদন করুন</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="service-card card border-0 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">৫. স্থায়ী বাসিন্দা সনদ</h5>
+                            <p class="text-muted">স্থায়ী বাসস্থানের প্রমাণ সনদ</p>
+                            <a href="#" class="btn btn-sm btn-primary">আবেদন করুন</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="service-card card border-0 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">৬. প্রতিবন্ধী সনদ</h5>
+                            <p class="text-muted">প্রতিবন্ধিতা প্রমাণের জন্য সনদ</p>
+                            <a href="#" class="btn btn-sm btn-primary">আবেদন করুন</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <a href="pages/services.html" class="btn btn-lg btn-outline-primary">সমস্ত সেবা দেখুন (৬৫+)</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Actions Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5 fw-bold">দ্রুত সেবা</h2>
+            <div class="row g-3 text-center">
+                <div class="col-md-3">
+                    <div class="quick-action-card p-4 border-0 rounded shadow-sm">
+                        <i class="fas fa-search fa-2x text-primary mb-3"></i>
+                        <h5>আবেদন ট্র্যাক করুন</h5>
+                        <p class="text-muted mb-3">আপনার আবেদনের অবস্থা জানুন</p>
+                        <a href="pages/track.html" class="btn btn-sm btn-primary">ট্র্যাক করুন</a>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="quick-action-card p-4 border-0 rounded shadow-sm">
+                        <i class="fas fa-check-circle fa-2x text-success mb-3"></i>
+                        <h5>সনদ যাচাই করুন</h5>
+                        <p class="text-muted mb-3">QR কোড দিয়ে সনদ যাচাই করুন</p>
+                        <a href="pages/verify.html" class="btn btn-sm btn-success">যাচাই করুন</a>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="quick-action-card p-4 border-0 rounded shadow-sm">
+                        <i class="fas fa-file-pdf fa-2x text-danger mb-3"></i>
+                        <h5>সনদ ডাউনলোড করুন</h5>
+                        <p class="text-muted mb-3">আপনার অনুমোদিত সনদ ডাউনলোড করুন</p>
+                        <a href="pages/dashboard.html" class="btn btn-sm btn-danger">ড্যাশবোর্ড</a>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="quick-action-card p-4 border-0 rounded shadow-sm">
+                        <i class="fas fa-user-circle fa-2x text-warning mb-3"></i>
+                        <h5>প্রোফাইল সম্পাদনা</h5>
+                        <p class="text-muted mb-3">আপনার প্রোফাইল আপডেট করুন</p>
+                        <a href="pages/profile.html" class="btn btn-sm btn-warning">সম্পাদনা করুন</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5 fw-bold">সাধারণ প্রশ্ন ও উত্তর</h2>
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="accordion" id="faqAccordion">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                    <i class="fas fa-question-circle me-2"></i> আমি কিভাবে নিবন্ধন করব?
+                                </button>
+                            </h2>
+                            <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    নিবন্ধন করতে "নতুন নিবন্ধন" বাটনে ক্লিক করুন, আপনার তথ্য পূরণ করুন এবং মোবাইল OTP যাচাই করুন।
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                    <i class="fas fa-question-circle me-2"></i> আবেদন প্রক্রিয়াকরণ কতক্ষণ লাগে?
+                                </button>
+                            </h2>
+                            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    সাধারণত ৫-৭ কর্মদিবস সময় লাগে। আপনি রিয়েল-টাইমে আপনার আবেদনের অবস্থা ট্র্যাক করতে পারেন।
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                                    <i class="fas fa-question-circle me-2"></i> কোন নথিপত্র প্রয়োজন?
+                                </button>
+                            </h2>
+                            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    আবেদনের ধরনের উপর নির্ভর করে বিভিন্ন নথির প্রয়োজন হয়। আবেদন ফর্মে সকল প্রয়োজনীয় নথির তালিকা থাকবে।
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                                    <i class="fas fa-question-circle me-2"></i> ফি কত টাকা?
+                                </button>
+                            </h2>
+                            <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    বিভিন্ন সেবার জন্য ফি ভিন্ন। সেবা নির্বাচনের সময় ফি জানানো হবে।
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-3">
+                    <h5 class="mb-3"><i class="fas fa-certificate"></i> BDFAST</h5>
+                    <p class="text-muted">ডিজিটাল নাগরিক সেবা ব্যবস্থাপনা</p>
+                </div>
+                <div class="col-md-3">
+                    <h5 class="mb-3">দ্রুত লিঙ্ক</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-muted text-decoration-none">হোম</a></li>
+                        <li><a href="#" class="text-muted text-decoration-none">সেবা সমূহ</a></li>
+                        <li><a href="#" class="text-muted text-decoration-none">সম্পর্কে</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5 class="mb-3">আইনি</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="pages/privacy.html" class="text-muted text-decoration-none">গোপনীয়তা নীতি</a></li>
+                        <li><a href="pages/terms.html" class="text-muted text-decoration-none">শর্তাবলী</a></li>
+                        <li><a href="pages/disclaimer.html" class="text-muted text-decoration-none">অস্বীকরণ</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5 class="mb-3">যোগাযোগ</h5>
+                    <p class="text-muted">
+                        <i class="fas fa-phone"></i> +৮৮০ XXXX XXXXXX<br>
+                        <i class="fas fa-envelope"></i> info@bdfast.gov.bd
+                    </p>
+                </div>
+            </div>
+            <hr class="bg-secondary">
+            <div class="text-center text-muted">
+                <p>&copy; ২০২৬ BDFAST। সর্বাধিকার সংরক্ষিত। এই প্ল্যাটফর্মটি সংশ্লিষ্ট কর্তৃপক্ষের অনুমোদন অনুযায়ী পরিচালিত হয়।</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

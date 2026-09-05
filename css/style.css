@@ -1,0 +1,250 @@
+/* BDFAST Citizen Services - Main Stylesheet */
+
+:root {
+    --primary-color: #667eea;
+    --secondary-color: #764ba2;
+    --success-color: #28a745;
+    --danger-color: #dc3545;
+    --warning-color: #ffc107;
+    --info-color: #17a2b8;
+    --light-bg: #f8f9fa;
+    --dark-text: #333;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--dark-text);
+    line-height: 1.6;
+}
+
+/* Navigation */
+.navbar {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    color: #fff !important;
+}
+
+/* Hero Section */
+.hero-section {
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-section h1 {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    animation: slideDown 0.8s ease;
+}
+
+.hero-section p {
+    font-size: 1.3rem;
+    animation: slideUp 0.8s ease;
+}
+
+/* Service Cards */
+.service-card {
+    transition: all 0.3s ease;
+    border-radius: 10px;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1) !important;
+}
+
+.service-card .card-body {
+    padding: 1.5rem;
+}
+
+.service-card .card-title {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+/* Quick Action Cards */
+.quick-action-card {
+    background: #fff;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.quick-action-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Forms */
+.form-control {
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+.form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+}
+
+.btn {
+    border-radius: 5px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background: var(--primary-color);
+    border: none;
+}
+
+.btn-primary:hover {
+    background: var(--secondary-color);
+    transform: translateY(-2px);
+}
+
+/* Tables */
+.table {
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.table-hover tbody tr:hover {
+    background-color: var(--light-bg);
+}
+
+/* Badges */
+.badge {
+    padding: 0.5rem 0.75rem;
+    border-radius: 20px;
+}
+
+/* Status Badges */
+.status-pending {
+    background: var(--warning-color);
+    color: #000;
+}
+
+.status-approved {
+    background: var(--success-color);
+    color: #fff;
+}
+
+.status-rejected {
+    background: var(--danger-color);
+    color: #fff;
+}
+
+.status-under-review {
+    background: var(--info-color);
+    color: #fff;
+}
+
+/* Alert Styling */
+.alert {
+    border-radius: 5px;
+    border: none;
+}
+
+/* Card Styling */
+.card {
+    border-radius: 10px;
+    border: 1px solid #e0e0e0;
+}
+
+.card-header {
+    background: var(--light-bg);
+    border-bottom: 2px solid #ddd;
+    font-weight: 600;
+}
+
+/* Loading Spinner */
+.spinner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
+}
+
+/* Animations */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Modal Styling */
+.modal-content {
+    border-radius: 10px;
+    border: none;
+}
+
+.modal-header {
+    background: var(--primary-color);
+    color: #fff;
+}
+
+/* Footer */
+footer {
+    background: #1a1a1a;
+    border-top: 3px solid var(--primary-color);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero-section {
+        min-height: 400px;
+    }
+    
+    .hero-section h1 {
+        font-size: 2rem;
+    }
+    
+    .service-card {
+        margin-bottom: 1rem;
+    }
+}
+
+/* Utility Classes */
+.text-primary {
+    color: var(--primary-color) !important;
+}
+
+.bg-light-primary {
+    background: rgba(102, 126, 234, 0.1);
+}
+
+.fw-bold {
+    font-weight: 600;
+}
+
+.shadow-sm {
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.rounded {
+    border-radius: 5px;
+}
