@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>আবেদন ব্যবসাপনা - BDFAST</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: #f5f7fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .sidebar {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+            padding: 0;
+            position: fixed;
+            width: 250px;
+            left: 0;
+            top: 0;
+            z-index: 1000;
+        }
+        .sidebar .logo {
+            padding: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+        }
+        .sidebar .nav-item a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            display: block;
+            padding: 15px 20px;
+            border-left: 3px solid transparent;
+            transition: all 0.3s;
+        }
+        .sidebar .nav-item a:hover,
+        .sidebar .nav-item a.active {
+            color: white;
+            background: rgba(255,255,255,0.1);
+            border-left-color: #ffc107;
+        }
+        .main-content {
+            margin-left: 250px;
+            padding: 20px;
+        }
+        .topbar {
+            background: white;
+            padding: 15px 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+        }
+        .card-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 20px;
+        }
+        .table-container {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .filter-section {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .badge-pending {
+            background: #ffc107;
+            color: #000;
+        }
+        .badge-approved {
+            background: #28a745;
+        }
+        .badge-rejected {
+            background: #dc3545;
+        }
+        .badge-review {
+            background: #17a2b8;
+        }
+        .action-buttons {
+            display: flex;
+            gap: 5px;
+        }
+        .action-buttons button {
+            padding: 5px 10px;
+            font-size: 0.875rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="logo">
+            <h4><i class="fas fa-certificate"></i> BDFAST</h4>
+            <small>অ্যাডমিন পয়ানেল</small>
+        </div>
+        <nav class="nav-menu">
+            <div class="nav-item">
+                <a href="dashboard.html">
+                    <i class="fas fa-chart-line"></i> ড্যাশবোর্ড
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="applications.html" class="active">
+                    <i class="fas fa-file-alt"></i> আবেদন ব্যবসাপনা
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="certificates.html">
+                    <i class="fas fa-certificate"></i> সনদ ব্যবসাপনা
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="certificate-design.html">
+                    <i class="fas fa-paint-brush"></i> সনদ ডিজাইন
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="users.html">
+                    <i class="fas fa-users"></i> ব্যবহারী
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="payments.html">
+                    <i class="fas fa-credit-card"></i> পেমেন্ট
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="audit-logs.html">
+                    <i class="fas fa-history"></i> অডিট লগ
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="settings.html">
+                    <i class="fas fa-cog"></i> সেটিংস
+                </a>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Topbar -->
+        <div class="topbar">
+            <div>
+                <h5>আবেদন ব্যবসাপনা</h5>
+            </div>
+        </div>
+
+        <!-- Filter Section -->
+        <div class="filter-section">
+            <div class="row g-3">
+                <div class="col-md-3">
+                    <input type="text" class="form-control" id="searchApplication" placeholder="আবেদন ID খোঁজুন">
+                </div>
+                <div class="col-md-3">
+                    <select class="form-control" id="filterStatus">
+                        <option value="">সব অবস্থা</option>
+                        <option value="pending">বিচারাধীন</option>
+                        <option value="review">পরীক্ষায়</option>
+                        <option value="approved">অনুমোদিত</option>
+                        <option value="rejected">অখংডিত</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <input type="date" class="form-control" id="filterDate">
+                </div>
+                <div class="col-md-3">
+                    <button class="btn btn-primary w-100" onclick="applyFilters()">
+                        <i class="fas fa-search"></i> খোঁজুন
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Applications Table -->
+        <div class="table-container">
+            <table class="table table-hover">
+                <thead class="table-light">
+                    <tr>
+                        <th>আবেদন ID</th>
+                        <th>নাগরিকের নাম</th>
+                        <th>সনদের ধরন</th>
+                        <th>সবমিশন তারিখ</th>
+                        <th>অবস্থা</th>
+                        <th>কার্যকরণ</th>
+                    </tr>
+                </thead>
+                <tbody id="applicationsTableBody">
+                    <tr>
+                        <td colspan="6" class="text-center text-muted py-4">
+                            <i class="fas fa-spinner fa-spin"></i> ডেটা লোড হতে ই...
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Application Detail Modal -->
+    <div class="modal fade" id="applicationModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title">আবেদন বিসতারিত</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="applicationDetailContent">
+                    <!-- Details will be loaded here -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">बংধ করুন</button>
+                    <button type="button" class="btn btn-warning" onclick="requestCorrection()">অনুরোধ অহৃ</button>
+                    <button type="button" class="btn btn-success" onclick="approveApplication()">অনুমোদন করুন</button>
+                    <button type="button" class="btn btn-danger" onclick="rejectApplication()">অখংডন করুন</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../js/main.js"></script>
+    <script src="../../js/admin.js"></script>
+</body>
+</html>

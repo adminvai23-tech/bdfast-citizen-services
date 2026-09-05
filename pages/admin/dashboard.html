@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>অ্যাডমিন ড্যাশবোর্ড - BDFAST</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: #f5f7fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .sidebar {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+            padding: 0;
+            position: fixed;
+            width: 250px;
+            left: 0;
+            top: 0;
+            z-index: 1000;
+        }
+        .sidebar .logo {
+            padding: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+        }
+        .sidebar .nav-item a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            display: block;
+            padding: 15px 20px;
+            border-left: 3px solid transparent;
+            transition: all 0.3s;
+        }
+        .sidebar .nav-item a:hover,
+        .sidebar .nav-item a.active {
+            color: white;
+            background: rgba(255,255,255,0.1);
+            border-left-color: #ffc107;
+        }
+        .main-content {
+            margin-left: 250px;
+            padding: 20px;
+        }
+        .topbar {
+            background: white;
+            padding: 15px 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+        }
+        .card-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 20px;
+        }
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .stat-card .number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #667eea;
+        }
+        .stat-card .label {
+            color: #666;
+            margin-top: 10px;
+        }
+        .stat-card i {
+            font-size: 3rem;
+            opacity: 0.1;
+            position: absolute;
+            right: -10px;
+            top: -10px;
+        }
+        .table-container {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .badge-pending {
+            background: #ffc107;
+            color: #000;
+        }
+        .badge-approved {
+            background: #28a745;
+        }
+        .badge-rejected {
+            background: #dc3545;
+        }
+        .badge-review {
+            background: #17a2b8;
+        }
+        .action-buttons {
+            display: flex;
+            gap: 5px;
+        }
+        .action-buttons button {
+            padding: 5px 10px;
+            font-size: 0.875rem;
+        }
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 200px;
+            }
+            .main-content {
+                margin-left: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="logo">
+            <h4><i class="fas fa-certificate"></i> BDFAST</h4>
+            <small>অ্যাডমিন পয়ানেল</small>
+        </div>
+        <nav class="nav-menu">
+            <div class="nav-item">
+                <a href="dashboard.html" class="active">
+                    <i class="fas fa-chart-line"></i> ড্যাশবোর্ড
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="applications.html">
+                    <i class="fas fa-file-alt"></i> আবেদন ব্যবসাপনা
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="certificates.html">
+                    <i class="fas fa-certificate"></i> সনদ ব্যবসাপনা
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="certificate-design.html">
+                    <i class="fas fa-paint-brush"></i> সনদ ডিজাইন
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="users.html">
+                    <i class="fas fa-users"></i> ব্যবহারী
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="payments.html">
+                    <i class="fas fa-credit-card"></i> পেমেন্ট
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="audit-logs.html">
+                    <i class="fas fa-history"></i> অডিট লগ
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="settings.html">
+                    <i class="fas fa-cog"></i> সেটিংস
+                </a>
+            </div>
+            <hr style="opacity: 0.2; margin: 10px 0;">
+            <div class="nav-item">
+                <a href="#" onclick="logout(); return false;">
+                    <i class="fas fa-sign-out-alt"></i> লগআউট
+                </a>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Topbar -->
+        <div class="topbar">
+            <div>
+                <h5>ড্যাশবোর্ড</h5>
+                <small class="text-muted" id="currentDate"></small>
+            </div>
+            <div>
+                <span id="adminName"></span>
+                <button class="btn btn-sm btn-outline-danger ms-3" onclick="logout()">
+                    <i class="fas fa-power-off"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Statistics Cards -->
+        <div class="row mb-4">
+            <div class="col-md-3">
+                <div class="stat-card position-relative overflow-hidden">
+                    <i class="fas fa-file-alt"></i>
+                    <div class="number" id="totalApplications">0</div>
+                    <div class="label">মোট আবেদন</div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stat-card position-relative overflow-hidden">
+                    <i class="fas fa-hourglass-start"></i>
+                    <div class="number" id="pendingApplications">0</div>
+                    <div class="label">বিচারাধীন</div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stat-card position-relative overflow-hidden">
+                    <i class="fas fa-check-circle"></i>
+                    <div class="number" id="approvedApplications">0</div>
+                    <div class="label">অনুমোদিত</div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stat-card position-relative overflow-hidden">
+                    <i class="fas fa-certificate"></i>
+                    <div class="number" id="certificatesIssued">0</div>
+                    <div class="label">সনদ প্রদান</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts Row -->
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">আবেদন স্ট্যাটিস্টিক্স</div>
+                    <div class="card-body">
+                        <canvas id="applicationChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">সনদ জাতিব্য অনুযায়ী</div>
+                    <div class="card-body">
+                        <canvas id="certificateChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Applications -->
+        <div class="table-container">
+            <h5 class="mb-4">কাছকাকছি আবেদন</h5>
+            <table class="table table-hover">
+                <thead class="table-light">
+                    <tr>
+                        <th>আবেদন ID</th>
+                        <th>নাগরিকের নাম</th>
+                        <th>সনদের ধরন</th>
+                        <th>সবমিশন তারিখ</th>
+                        <th>অবস্থা</th>
+                        <th>কার্যকতা</th>
+                    </tr>
+                </thead>
+                <tbody id="recentApplicationsTable">
+                    <tr>
+                        <td colspan="6" class="text-center text-muted py-4">
+                            <i class="fas fa-spinner fa-spin"></i> ডেটা লোড হতে ই...
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/admin.js"></script>
+</body>
+</html>
