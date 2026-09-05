@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>অ্যাডমিন লগইন - BDFAST</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+        .login-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            max-width: 450px;
+            margin: 0 auto;
+        }
+        .login-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+            border-radius: 15px 15px 0 0;
+        }
+        .form-body {
+            padding: 40px 30px;
+        }
+        .form-control {
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            padding: 12px 15px;
+        }
+        .form-control:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+        }
+        .btn-admin-login {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-weight: 600;
+            width: 100%;
+            cursor: pointer;
+        }
+        .btn-admin-login:hover {
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+        .warning-box {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            color: #856404;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-card">
+        <div class="login-header">
+            <i class="fas fa-user-shield" style="font-size: 3rem; margin-bottom: 20px;"></i>
+            <h2>অ্যাডমিন লগইন</h2>
+            <p class="mb-0">BDFAST অ্যাডমিন প্যানেল</p>
+        </div>
+
+        <div class="form-body">
+            <div class="warning-box">
+                <i class="fas fa-lock"></i> এটি শুধুমাত্র অনুমোদিত অ্যাডমিনিস্ট্রেটরদের জন্য।
+            </div>
+
+            <form id="adminLoginForm">
+                <div class="mb-3">
+                    <label class="form-label">ব্যবহারকারীর নাম বা ইমেইল</label>
+                    <input type="text" class="form-control" id="adminUsername" placeholder="অ্যাডমিন ব্যবহারকারীর নাম" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">পাসওয়ার্ড</label>
+                    <div class="input-group">
+                        <input type="password" class="form-control" id="adminPassword" placeholder="পাসওয়ার্ড" required>
+                        <button type="button" class="btn btn-outline-secondary" id="toggleAdminPassword">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="adminRemember">
+                    <label class="form-check-label" for="adminRemember">
+                        আমাকে মনে রাখুন
+                    </label>
+                </div>
+
+                <button type="submit" class="btn-admin-login">
+                    <i class="fas fa-sign-in-alt"></i> লগইন করুন
+                </button>
+            </form>
+
+            <hr class="my-4">
+
+            <div class="text-center">
+                <small class="text-muted">নাগরিক লগইন?</small><br>
+                <a href="../login.html" class="text-decoration-none">এখানে লগইন করুন</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../js/main.js"></script>
+    <script>
+        document.getElementById('toggleAdminPassword').addEventListener('click', function() {
+            const input = document.getElementById('adminPassword');
+            const icon = this.querySelector('i');
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                input.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        });
+
+        document.getElementById('adminLoginForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('adminUsername').value;
+            const password = document.getElementById('adminPassword').value;
+            const remember = document.getElementById('adminRemember').checked;
+
+            try {
+                const response = await BDFAST.apiCall('/auth/admin-login', 'POST', {
+                    username,
+                    password
+                });
+
+                if (response && response.success) {
+                    localStorage.setItem('token', response.token);
+                    BDFAST.setUserInfo(response.user);
+                    if (remember) localStorage.setItem('rememberMe', 'true');
+                    
+                    BDFAST.showAlert('লগইন সফল!', 'success');
+                    setTimeout(() => {
+                        window.location.href = 'dashboard.html';
+                    }, 1500);
+                } else {
+                    BDFAST.showAlert(response?.message || 'লগইন ব্যর্থ', 'danger');
+                }
+            } catch (error) {
+                BDFAST.showAlert('একটি ত্রুটি ঘটেছে', 'danger');
+            }
+        });
+    </script>
+</body>
+</html>
