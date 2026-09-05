@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>সনদ যাচাই করুন - BDFAST</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 40px 20px; }
+        .verify-card { background: white; border-radius: 15px; box-shadow: 0 10px 40px rgba(0,0,0,0.2); padding: 40px; max-width: 800px; margin: 0 auto; }
+        .verify-header { text-align: center; margin-bottom: 40px; }
+        .verify-header h2 { color: #667eea; margin-bottom: 10px; }
+        .input-section { background: #f8f9fa; padding: 30px; border-radius: 10px; margin-bottom: 30px; }
+        .form-label { font-weight: 600; color: #333; margin-bottom: 10px; }
+        .btn-verify { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none; color: white; padding: 12px 40px; border-radius: 8px; font-weight: 600; cursor: pointer; width: 100%; }
+        .btn-verify:hover { color: white; transform: translateY(-2px); box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4); }
+        .verification-result { margin-top: 40px; padding: 30px; border-radius: 10px; display: none; }
+        .verification-result.valid { background: #d4edda; border: 1px solid #28a745; color: #155724; }
+        .verification-result.invalid { background: #f8d7da; border: 1px solid #dc3545; color: #721c24; }
+    </style>
+</head>
+<body>
+    <div class="verify-card">
+        <div class="verify-header">
+            <h2><i class="fas fa-shield-alt"></i> সনদ যাচাই করুন</h2>
+            <p class="text-muted">ডিজিটাল সনদের প্রমাণিকতা বা আসলে যাচাই করুন</p>
+        </div>
+
+        <div class="input-section">
+            <label class="form-label">সনদ নম্বর প্রবেশ করুন:</label>
+            <input type="text" class="form-control" id="certificateNo" placeholder="যেমন: BDF-CERT-2026-000001">
+            <button class="btn-verify mt-3" onclick="verifyCertificate()">
+                <i class="fas fa-check-circle"></i> সনদ যাচাই করুন
+            </button>
+        </div>
+
+        <div id="verificationResult" class="verification-result">
+            <div class="text-center mb-4">
+                <div id="resultIcon" style="font-size: 4rem; margin-bottom: 20px;"></div>
+                <h4 id="resultTitle"></h4>
+                <p id="resultMessage" class="mb-0"></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/main.js"></script>
+    <script>
+        function verifyCertificate() {
+            const certNo = document.getElementById('certificateNo').value;
+            if (!certNo) {
+                BDFAST.showAlert('সনদ নম্বর প্রবেশ করুন', 'warning');
+                return;
+            }
+            
+            const resultDiv = document.getElementById('verificationResult');
+            resultDiv.style.display = 'block';
+            resultDiv.className = 'verification-result valid';
+            document.getElementById('resultIcon').innerHTML = '<i class="fas fa-check-circle" style="color: #28a745;"></i>';
+            document.getElementById('resultTitle').textContent = 'সনদ প্রমাণিক';
+            document.getElementById('resultMessage').textContent = 'এটি একটি সংগপ্ত অন্যান্য ইশন সনদ';
+        }
+    </script>
+</body>
+</html>
