@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>নিবন্ধন - BDFAST</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 20px;
+        }
+        .register-container {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .register-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px 15px 0 0;
+            text-align: center;
+        }
+        .form-section {
+            padding: 30px;
+        }
+        .step-indicator {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+        .step {
+            text-align: center;
+            flex: 1;
+        }
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: #e9ecef;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            font-weight: bold;
+            color: #667eea;
+        }
+        .step.active .step-number {
+            background: #667eea;
+            color: white;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: #333;
+        }
+        .form-control {
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            padding: 10px 15px;
+            font-size: 1rem;
+        }
+        .form-control:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+        }
+        .btn-submit {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-weight: 600;
+            width: 100%;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+        .login-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .login-link a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .error-message {
+            color: #dc3545;
+            font-size: 0.875rem;
+            margin-top: 5px;
+        }
+        .row-cols-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        @media (max-width: 576px) {
+            .row-cols-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="register-container">
+        <div class="register-header">
+            <h2><i class="fas fa-user-plus"></i> নতুন নিবন্ধন</h2>
+            <p class="mb-0">BDFAST নাগরিক সেবা পোর্টাল</p>
+        </div>
+
+        <div class="form-section">
+            <!-- Step Indicator -->
+            <div class="step-indicator">
+                <div class="step active" id="step1Indicator">
+                    <div class="step-number">১</div>
+                    <small>ব্যক্তিগত তথ্য</small>
+                </div>
+                <div class="step" id="step2Indicator">
+                    <div class="step-number">২</div>
+                    <small>যাচাইকরণ</small>
+                </div>
+                <div class="step" id="step3Indicator">
+                    <div class="step-number">৩</div>
+                    <small>সম্পন্ন</small>
+                </div>
+            </div>
+
+            <!-- Step 1: Personal Information -->
+            <div id="step1" class="form-step">
+                <h4 class="mb-4">ব্যক্তিগত তথ্য</h4>
+                
+                <div class="row-cols-2">
+                    <div class="form-group">
+                        <label>পূর্ণ নাম *</label>
+                        <input type="text" id="fullName" class="form-control" placeholder="আপনার পূর্ণ নাম">
+                        <div class="error-message" id="fullNameError"></div>
+                    </div>
+                    <div class="form-group">
+                        <label>জন্মতারিখ *</label>
+                        <input type="date" id="dob" class="form-control">
+                        <div class="error-message" id="dobError"></div>
+                    </div>
+                </div>
+
+                <div class="row-cols-2">
+                    <div class="form-group">
+                        <label>জাতীয় পরিচয়পত্র (NID) *</label>
+                        <input type="text" id="nid" class="form-control" placeholder="NID নম্বর">
+                        <div class="error-message" id="nidError"></div>
+                    </div>
+                    <div class="form-group">
+                        <label>জন্ম নিবন্ধন নম্বর</label>
+                        <input type="text" id="birthReg" class="form-control" placeholder="জন্ম নিবন্ধন নম্বর">
+                    </div>
+                </div>
+
+                <div class="row-cols-2">
+                    <div class="form-group">
+                        <label>মোবাইল নম্বর *</label>
+                        <input type="tel" id="mobile" class="form-control" placeholder="০১X XXXX XXXX">
+                        <div class="error-message" id="mobileError"></div>
+                    </div>
+                    <div class="form-group">
+                        <label>ইমেইল *</label>
+                        <input type="email" id="email" class="form-control" placeholder="your@email.com">
+                        <div class="error-message" id="emailError"></div>
+                    </div>
+                </div>
+
+                <div class="row-cols-2">
+                    <div class="form-group">
+                        <label>লিঙ্গ *</label>
+                        <select id="gender" class="form-control">
+                            <option value="">নির্বাচন করুন</option>
+                            <option value="male">পুরুষ</option>
+                            <option value="female">মহিলা</option>
+                            <option value="other">অন্যান্য</option>
+                        </select>
+                        <div class="error-message" id="genderError"></div>
+                    </div>
+                    <div class="form-group">
+                        <label>পিতার নাম *</label>
+                        <input type="text" id="fatherName" class="form-control" placeholder="পিতার নাম">
+                        <div class="error-message" id="fatherNameError"></div>
+                    </div>
+                </div>
+
+                <div class="row-cols-2">
+                    <div class="form-group">
+                        <label>মাতার নাম *</label>
+                        <input type="text" id="motherName" class="form-control" placeholder="মাতার নাম">
+                        <div class="error-message" id="motherNameError"></div>
+                    </div>
+                    <div class="form-group">
+                        <label>স্পাউস এর নাম</label>
+                        <input type="text" id="spouseName" class="form-control" placeholder="স্পাউস এর নাম (যদি থাকে)">
+                    </div>
+                </div>
+
+                <button type="button" class="btn-submit" onclick="nextStep(1)">পরবর্তী</button>
+            </div>
+
+            <!-- Step 2: OTP Verification -->
+            <div id="step2" class="form-step" style="display: none;">
+                <h4 class="mb-4">মোবাইল নম্বর যাচাই করুন</h4>
+                
+                <div class="alert alert-info">
+                    <i class="fas fa-info-circle"></i> আপনার মোবাইল নম্বরে একটি OTP পাঠানো হয়েছে। দয়া করে নীচে প্রবেশ করুন।
+                </div>
+
+                <div class="form-group">
+                    <label>OTP কোড *</label>
+                    <input type="text" id="otp" class="form-control" placeholder="৬ সংখ্যার OTP" maxlength="6">
+                    <div class="error-message" id="otpError"></div>
+                </div>
+
+                <div class="form-group">
+                    <label>পাসওয়ার্ড *</label>
+                    <input type="password" id="password" class="form-control" placeholder="শক্তিশালী পাসওয়ার্ড">
+                    <small class="text-muted">কমপক্ষে ৮ অক্ষর, বড় হাতের অক্ষর, সংখ্যা এবং বিশেষ চিহ্ন অন্তর্ভুক্ত করুন</small>
+                    <div class="error-message" id="passwordError"></div>
+                </div>
+
+                <div class="form-group">
+                    <label>পাসওয়ার্ড নিশ্চিত করুন *</label>
+                    <input type="password" id="confirmPassword" class="form-control" placeholder="পাসওয়ার্ড পুনরায় প্রবেশ করুন">
+                    <div class="error-message" id="confirmPasswordError"></div>
+                </div>
+
+                <div class="form-group">
+                    <div class="form-check">
+                        <input type="checkbox" id="terms" class="form-check-input">
+                        <label class="form-check-label" for="terms">
+                            আমি শর্তাবলী ও গোপনীয়তা নীতিতে সম্মত
+                        </label>
+                    </div>
+                    <div class="error-message" id="termsError"></div>
+                </div>
+
+                <div class="d-grid gap-2">
+                    <button type="button" class="btn-submit" onclick="completeRegistration()">নিবন্ধন সম্পন্ন করুন</button>
+                    <button type="button" class="btn btn-outline-secondary" onclick="prevStep(2)">পূর্ববর্তী</button>
+                </div>
+            </div>
+
+            <!-- Step 3: Success -->
+            <div id="step3" class="form-step" style="display: none;">
+                <div class="text-center">
+                    <div style="font-size: 4rem; color: #28a745; margin: 20px 0;">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h4>নিবন্ধন সফল!</h4>
+                    <p class="text-muted mb-4">আপনার অ্যাকাউন্ট সফলভাবে তৈরি হয়েছে।</p>
+                    
+                    <div class="alert alert-info text-start">
+                        <strong>আপনার তথ্য:</strong>
+                        <ul class="mb-0 mt-2">
+                            <li>নাম: <span id="confirmName"></span></li>
+                            <li>মোবাইল: <span id="confirmMobile"></span></li>
+                            <li>ইমেইল: <span id="confirmEmail"></span></li>
+                        </ul>
+                    </div>
+
+                    <a href="login.html" class="btn-submit" style="display: inline-block; text-decoration: none;">
+                        এখন লগইন করুন
+                    </a>
+                </div>
+            </div>
+
+            <div class="login-link">
+                ইতিমধ্যে অ্যাকাউন্ট আছে? <a href="login.html">লগইন করুন</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        let formData = {};
+
+        // Send OTP
+        async function sendOTP() {
+            const mobile = document.getElementById('mobile').value;
+            
+            if (!BDFAST.validatePhoneNumber(mobile)) {
+                document.getElementById('mobileError').textContent = 'বৈধ মোবাইল নম্বর প্রবেশ করুন';
+                return false;
+            }
+
+            try {
+                const response = await BDFAST.apiCall('/auth/otp/send', 'POST', { mobile });
+                if (response && response.success) {
+                    BDFAST.showAlert('OTP আপনার মোবাইলে পাঠানো হয়েছে', 'success');
+                    return true;
+                }
+            } catch (error) {
+                console.error('OTP Send Error:', error);
+            }
+            return false;
+        }
+
+        // Next Step
+        function nextStep(step) {
+            if (step === 1) {
+                if (validateStep1()) {
+                    saveStep1Data();
+                    if (sendOTP()) {
+                        document.getElementById('step1').style.display = 'none';
+                        document.getElementById('step2').style.display = 'block';
+                        document.getElementById('step1Indicator').classList.remove('active');
+                        document.getElementById('step2Indicator').classList.add('active');
+                    }
+                }
+            }
+        }
+
+        // Previous Step
+        function prevStep(step) {
+            if (step === 2) {
+                document.getElementById('step2').style.display = 'none';
+                document.getElementById('step1').style.display = 'block';
+                document.getElementById('step1Indicator').classList.add('active');
+                document.getElementById('step2Indicator').classList.remove('active');
+            }
+        }
+
+        // Validate Step 1
+        function validateStep1() {
+            let isValid = true;
+            
+            const fullName = document.getElementById('fullName').value.trim();
+            if (!fullName) {
+                document.getElementById('fullNameError').textContent = 'পূর্ণ নাম প্রয়োজন';
+                isValid = false;
+            }
+
+            const dob = document.getElementById('dob').value;
+            if (!dob) {
+                document.getElementById('dobError').textContent = 'জন্মতারিখ প্রয়োজন';
+                isValid = false;
+            }
+
+            const nid = document.getElementById('nid').value.trim();
+            if (!BDFAST.validateNID(nid)) {
+                document.getElementById('nidError').textContent = 'বৈধ NID প্রবেশ করুন';
+                isValid = false;
+            }
+
+            const mobile = document.getElementById('mobile').value;
+            if (!BDFAST.validatePhoneNumber(mobile)) {
+                document.getElementById('mobileError').textContent = 'বৈধ মোবাইল নম্বর প্রয়োজন';
+                isValid = false;
+            }
+
+            const email = document.getElementById('email').value;
+            if (!BDFAST.validateEmail(email)) {
+                document.getElementById('emailError').textContent = 'বৈধ ইমেইল প্রয়োজন';
+                isValid = false;
+            }
+
+            const gender = document.getElementById('gender').value;
+            if (!gender) {
+                document.getElementById('genderError').textContent = 'লিঙ্গ নির্বাচন করুন';
+                isValid = false;
+            }
+
+            const fatherName = document.getElementById('fatherName').value.trim();
+            if (!fatherName) {
+                document.getElementById('fatherNameError').textContent = 'পিতার নাম প্রয়োজন';
+                isValid = false;
+            }
+
+            const motherName = document.getElementById('motherName').value.trim();
+            if (!motherName) {
+                document.getElementById('motherNameError').textContent = 'মাতার নাম প্রয়োজন';
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
+        // Save Step 1 Data
+        function saveStep1Data() {
+            formData = {
+                fullName: document.getElementById('fullName').value.trim(),
+                dob: document.getElementById('dob').value,
+                nid: document.getElementById('nid').value.trim(),
+                birthReg: document.getElementById('birthReg').value.trim(),
+                mobile: document.getElementById('mobile').value,
+                email: document.getElementById('email').value,
+                gender: document.getElementById('gender').value,
+                fatherName: document.getElementById('fatherName').value.trim(),
+                motherName: document.getElementById('motherName').value.trim(),
+                spouseName: document.getElementById('spouseName').value.trim()
+            };
+        }
+
+        // Complete Registration
+        async function completeRegistration() {
+            if (!validateStep2()) return;
+
+            const button = event.target;
+            BDFAST.setLoadingState(button, true);
+
+            try {
+                const registrationData = {
+                    ...formData,
+                    password: document.getElementById('password').value,
+                    otp: document.getElementById('otp').value
+                };
+
+                const response = await BDFAST.apiCall('/auth/register', 'POST', registrationData);
+                
+                if (response && response.success) {
+                    // Show success
+                    document.getElementById('step2').style.display = 'none';
+                    document.getElementById('step3').style.display = 'block';
+                    document.getElementById('step2Indicator').classList.remove('active');
+                    document.getElementById('step3Indicator').classList.add('active');
+
+                    document.getElementById('confirmName').textContent = formData.fullName;
+                    document.getElementById('confirmMobile').textContent = formData.mobile;
+                    document.getElementById('confirmEmail').textContent = formData.email;
+
+                    BDFAST.showAlert('আপনার অ্যাকাউন্ট সফলভাবে তৈরি হয়েছে!', 'success');
+                } else {
+                    BDFAST.showAlert(response?.message || 'নিবন্ধন ব্যর্থ হয়েছে', 'danger');
+                }
+            } catch (error) {
+                console.error('Registration Error:', error);
+                BDFAST.showAlert('একটি ত্রুটি ঘটেছে। দয়া করে পুনরায় চেষ্টা করুন', 'danger');
+            } finally {
+                BDFAST.setLoadingState(button, false);
+            }
+        }
+
+        // Validate Step 2
+        function validateStep2() {
+            let isValid = true;
+
+            const otp = document.getElementById('otp').value;
+            if (!otp || otp.length !== 6) {
+                document.getElementById('otpError').textContent = '৬ সংখ্যার OTP প্রবেশ করুন';
+                isValid = false;
+            }
+
+            const password = document.getElementById('password').value;
+            if (password.length < 8) {
+                document.getElementById('passwordError').textContent = 'পাসওয়ার্ড কমপক্ষে ৮ অক্ষর হতে হবে';
+                isValid = false;
+            }
+
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            if (password !== confirmPassword) {
+                document.getElementById('confirmPasswordError').textContent = 'পাসওয়ার্ড মিলছে না';
+                isValid = false;
+            }
+
+            if (!document.getElementById('terms').checked) {
+                document.getElementById('termsError').textContent = 'শর্তাবলী গ্রহণ করুন';
+                isValid = false;
+            }
+
+            return isValid;
+        }
+    </script>
+</body>
+</html>
